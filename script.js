@@ -39,6 +39,27 @@ async function getWeather(city) {
         anginElement.innerHTML = `${data.wind.speed} <span>km/h</span>`;
         cuacaImg.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
 
+        // Mengatur background sesuai cuaca
+        const weather = data.weather[0].main.toLowerCase();
+
+        if (weather.includes("clear")) {
+            document.body.style.backgroundImage = "url('./img/clear.png')";
+        } else if (weather.includes("cloud")) {
+            document.body.style.backgroundImage = "url('./img/cloud.png')";
+        } else if (weather.includes("rain")) {
+            document.body.style.backgroundImage = "url('./img/rain.png')";
+        } else if (weather.includes("snow")) {
+            document.body.style.backgroundImage = "url('./img/snow.png')";
+        } else if (weather.includes("mist") || weather.includes("fog")) {
+            document.body.style.backgroundImage = "url('./img/mist.png')";
+        } else {
+            document.body.style.backgroundImage = "url('./img/background.jpg')";
+        }
+
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundPosition = "center";
+        document.body.style.backgroundRepeat = "no-repeat";
+
     } catch (error) {
         alert(error.message);
     }
